@@ -90,6 +90,7 @@ function registerNewUser(req, res) {
         return res.status(400).json({
           success: true,
           errors : errors,
+          user:user,
         });
       }
 
@@ -120,6 +121,7 @@ function registerNewUser(req, res) {
         return res.status(200).json({
           success: true,
           errors : errors,
+          user:user,
         });
 
       }).catch(function (err) {
@@ -187,6 +189,7 @@ router.post('/login', (req, res) => {
       return res.status(400).json({
         success: false,
         errors : errors,
+        user:user,
       });
     }
 
@@ -195,19 +198,22 @@ router.post('/login', (req, res) => {
       return res.status(400).json({
         success: false,
         errors : errors,
+        user:user,
       });
     }
 
     // invalid token - synchronous
     try {
+      // verify token, if fails renew token
       jwt.verify(user.token, config.jwtSecret);
       res.cookie('access_token', user.token, {secure: config.secure_cookie });
       return res.status(200).json({
         success: true,
         errors : errors,
+        user:user,
       });
     } catch(err) {
-      // err
+      // renew token
       var user_token = jwt.sign({ user: req.body.username }, config.jwtSecret, {
         expiresIn: '1d',
         algorithm: 'HS256'
@@ -223,6 +229,7 @@ router.post('/login', (req, res) => {
           return res.status(200).json({
             success: true,
             errors : errors,
+            user:user,
           });
         }
       }).catch(function (err) {

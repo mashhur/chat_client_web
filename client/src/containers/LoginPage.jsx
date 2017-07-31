@@ -52,7 +52,8 @@ class LoginPage extends React.Component {
           errors: {},
         });
 
-        Auth.authenticateUser(xhr.response.access_token);
+        console.log("Response: ", xhr.response.user);
+        Auth.authenticateUser(xhr.response.user.token, xhr.response.user.pid);
         this.context.router.replace('/');
 
       } else {

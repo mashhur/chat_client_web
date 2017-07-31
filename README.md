@@ -31,7 +31,7 @@ $npm install --save sequelize-cli
 // Initialize Sequlize ORM in order to generate ORM files
 $sequelize init
 // result
-Sequelize [Node: 4.2.6, CLI: 2.7.0, ORM: 4.0.0]
+Sequselize [Node: 4.2.6, CLI: 2.7.0, ORM: 4.0.0]
 
 Created "config/config.json"
 Successfully created migrations folder at "/data/projects/nodejs/server/migrations".

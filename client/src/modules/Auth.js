@@ -5,8 +5,9 @@ class Auth {
      *
      * @param {string} token
      */
-    static authenticateUser(token) {
+    static authenticateUser(token, pid) {
         localStorage.setItem('token', token);
+        localStorage.setItem('pid', pid);
     }
 
     /**
@@ -24,6 +25,7 @@ class Auth {
      */
     static deauthenticateUser() {
         localStorage.removeItem('token');
+        localStorage.removeItem('pid');
     }
 
     /**
@@ -34,6 +36,10 @@ class Auth {
 
     static getToken() {
         return localStorage.getItem('token');
+    }
+
+    static getPid() {
+        return localStorage.getItem('pid');
     }
 
 }
